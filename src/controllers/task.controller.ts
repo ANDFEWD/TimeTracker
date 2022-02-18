@@ -64,7 +64,7 @@ export class TaskController {
     },
   })
   async findById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @param.filter(Task, {exclude: 'where'}) filter?: FilterExcludingWhere<Task>,
   ): Promise<Task> {
     return this.taskRepository.findById(id, filter);
@@ -97,7 +97,7 @@ export class TaskController {
     },
   })
   async replaceById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody() task: Task,
   ): Promise<void> {
     await this.taskRepository.replaceById(id, task);
@@ -111,7 +111,7 @@ export class TaskController {
     },
   })
   async updateById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -131,7 +131,7 @@ export class TaskController {
       },
     },
   })
-  async deleteById(@param.path.number('id') id: number): Promise<void> {
+  async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.taskRepository.deleteById(id);
   }
 
